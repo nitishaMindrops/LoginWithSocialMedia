@@ -1,0 +1,86 @@
+
+
+<html>
+<head>
+    <meta name="google-signin-client_id" content="206707121329-b4uq4j3de27no9bjnao91o2308996t4e.apps.googleusercontent.com">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQEHVS7V4H"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.onload = function () {
+            // $(".g-signin2 > div").css("width", "400px");
+            // $("..abcRioButton abcRioButtonLightBlue").css("width", "400px");
+            //$(".abcRioButtonContentWrapper").css("width", "70px");
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-DQEHVS7V4H');
+    </script>
+    <style>
+
+        #divFbLogin {
+            /*display: flex;
+            align-items: center;
+            justify-content: center;*/
+            margin-top: 50px;
+            margin-left:50px;
+        }
+
+        .container1 {
+            position: relative;
+            border-radius: 5px;
+            /*background-color: #f2f2f2;*/
+            padding: 20px 0 30px 0;
+            width: 800px;
+        }
+
+        .fb {
+            background-color: #3B5998;
+            color: white;
+        }
+
+        .google {
+            background-color: #dd4b39;
+            color: white;
+        }
+
+        Two-column layout
+        .col {
+            float: left;
+            width: 50%;
+            margin: auto;
+            padding-left: 350px;
+            margin-top: 6px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="col" id="divFbLogin">
+        <fb:login-button scope="public_profile,email" id="RedirectId" onlogin="checkLoginState()" ; onload="Redirect()">
+        </fb:login-button>
+        <br /><br />
+
+        <a href="#" class="g-signin2" data-onsuccess="onSignIn">
+            <i class="fa fa-google fa-fw">
+            </i> Login with Google
+        </a>
+        
+    </div>
+    <div id="status">
+        
+    </div>
+    <script src="js/LoginCode.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            crossorigin="anonymous"></script>
+</body>
+</html>
