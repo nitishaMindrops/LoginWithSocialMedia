@@ -2,6 +2,15 @@ var PageOffset = 0;
 var responseArray = [];
 var ajaxRequest = null;
 
+var auth2;
+var googleUser;
+
+var isFacebookLoggedIn = null;
+var isGoogleLoggedIn = null;
+
+
+
+
 window.fbAsyncInit = function () {
     FB.init({
         appId: '692896381738448',
@@ -19,23 +28,59 @@ window.fbAsyncInit = function () {
 
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
+
+        isFacebookLoggedIn = true;
+
         TrendingScroll();
     }
     else {
-        window.location = "/Index";
 
-    }// Returns the login status.
+        isFacebookLoggedIn = false;
+
+    }
+
+    if (isGoogleLoggedIn == false && isFacebookLoggedIn == false) {
+        window.location = "/Index";
+    }
 }
 
-function CheckLogin() {
-    var sessionTimeout = 1; //hours
-    var loginDuration = new Date();
-    loginDuration.setTime(loginDuration.getTime() + (sessionTimeout * 60 * 60 * 1000));
-    document.cookie = "CrewCentreSession=Valid; " + loginDuration.toGMTString() + "; path=/";
-    // Put this at the top of index page
+window.onLoadCallback = function () {
+
+    gapi.load('auth2', function () {
+        auth2 = gapi.auth2.init({
+            client_id: "206707121329-b4uq4j3de27no9bjnao91o2308996t4e.apps.googleusercontent.com"
+        });
+
+        auth2.isSignedIn.listen(signinChanged);
+
+        auth2.currentUser.listen(userChanged);
+
+    });
+}
+
+var signinChanged = function (val) {
+    //alert(val);
 };
 
+var userChanged = function (user) {
+
+    isGoogleLoggedIn = user.isSignedIn();
+
+    if (isGoogleLoggedIn == false && isFacebookLoggedIn == false) {
+        window.location = "/Index";
+    }
+
+    if (isGoogleLoggedIn) {
+
+        TrendingScroll();
+
+    }
+};
+
+
+
 $(document).ready(function () {
+
     $(window).on('scroll', function () {
         if ($(window).scrollTop() >= $(
             '.div').offset().top + $('.div').
